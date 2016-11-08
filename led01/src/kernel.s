@@ -34,7 +34,7 @@ PropertyInfoEnd:
 .section .text
 _start:
   mailbox .req r0 @; Alias mailbox to r0
-  ldr r0, =0x3f00b880 @; Load the mailbox's base address into r0
+  ldr mailbox, =0x3f00b880 @; Load the mailbox's base address into r0
 
   wait1$:
     status .req r1 @; Alias status to r1
@@ -49,5 +49,5 @@ _start:
   str message, [mailbox, #0x20] @; Put the message in the mailbox
   .unreq message @; Unset the alias
 
-  wait2$:
-    b wait2$ @; Give the CPU something to do ad infinitum
+  hang:
+    b hang @; Give the CPU something to do ad infinitum
