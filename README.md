@@ -18,4 +18,4 @@ If you have `make` installed, all you need to do is `cd` into an example directo
 make
 ```
 
-Then you will need to copy the generated `kernel.img` to your SD card, along with the [Raspberry Pi boot files](https://github.com/raspberrypi/firmware/tree/master/boot) (`bootloader.bin` and `start.elf`), put the card carefully in your Pi and you are good to go!
+Then you will need to copy the generated `kernel.img` to your SD card, along with the [Raspberry Pi boot files](https://github.com/raspberrypi/firmware/tree/master/boot) (`bootcode.bin` and `start.elf`), put the card carefully in your Pi and you are good to go!
