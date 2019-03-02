@@ -8,6 +8,7 @@
 @;
 @; Mailbox base address: 0x3f00b880
 @; Mailbox 1 write address: [0x3f00b880, #0x20]
+@; Mailbox 1 status address: [0x3f00b880, #0x38]
 @; Property tag channel: 8
 @; Property tag ID: 0x00038041 (SET_GPIO_STATE)
 @; Property tag message: 130 1 (ACT_LED pin number followed by state)
@@ -38,7 +39,7 @@ _start:
 
   wait1$:
     status .req r1 @; Alias status to r1
-    ldr status, [mailbox, #0x18] @; Load the Mailbox 0 status address
+    ldr status, [mailbox, #0x38] @; Load the Mailbox 1 status address
     tst status, #0x80000000 @; Check the status against the FULL bit
     .unreq status @; Unset the alias
     bne wait1$ @; Keep checking the mailbox until it isn't full

@@ -5,9 +5,8 @@
 @; Mailbox base address: 0x3f00b880
 @; Mailbox 0 read address:   [0x3f00b880, #0x0]
 @; Mailbox 0 status address: [0x3f00b880, #0x18]
-@; Mailbox 0 write address:  [0x3f00b880, #0x20]
-@;
-@; Note: The mailbox 0 write address is actually the mailbox 1 read address
+@; Mailbox 1 write address:  [0x3f00b880, #0x20]
+@; Mailbox 1 status address: [0x3f00b880, #0x38]
 @;
 
 @; Write a message to the GPU's mailbox (1)
@@ -23,7 +22,7 @@ MailboxWrite:
 
   wait_write$:
     status .req r3
-    ldr status, [mailbox, #0x18] @; Load the status of the mailbox (0)
+    ldr status, [mailbox, #0x38] @; Load the status of the mailbox (1)
     tst status, #0x80000000 @; Check the status against the FULL bit
     .unreq status
     bne wait_write$ @; Keep checking the mailbox until it isn't full
